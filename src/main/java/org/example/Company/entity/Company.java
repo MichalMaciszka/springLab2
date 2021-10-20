@@ -3,6 +3,7 @@ package org.example.Company.entity;
 
 import lombok.*;
 import org.example.Employee.entity.Employee;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Company {
 
     private double budget;
 
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     @Basic(fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Employee> employees;

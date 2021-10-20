@@ -47,7 +47,7 @@ public class EmployeeCompanyController {
         Optional<Company> company = companyService.find(name);
         if(company.isPresent()){
             Employee employee = CreateEmployeeRequest
-                    .dtoToEntityMapper(x -> companyService.find(x).orElseThrow(), company::get)
+                    .dtoToEntityMapper(company::get)
                     .apply(request);
             employee = employeeService.create(employee);
             return ResponseEntity.created(builder.pathSegment("api", "companies", "{name}", "employees", "{id}")
